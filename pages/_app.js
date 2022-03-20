@@ -1,7 +1,19 @@
-import { Layout } from "./common";
-import { wrapper } from "../redux/store.ts";
+import React, { useEffect } from "react";
 import Head from "next/head";
+import Router from 'next/router'
+import { wrapper } from "@/redux/store.ts";
+import { Layout } from "@/pages/common";
+import '@/pages/common/styles/globals.css'
+
 const App = ({ Component, pageProps }) => {
+  useEffect(() => {
+    // 접근시 게시판 이동
+    const {pathname} = Router;
+    if(pathname === '/' ){
+      Router.push('/board/board-list');
+    }
+  });
+
   return (
     <>
       <Head>
