@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import tableStyles from "./common/styles/table.module.css";
+import tableStyles from "./common/styles/Table.module.css";
 import axios from "axios";
 export default function Home() {
   useEffect(() => {
-    axios.get("http://localhost:5000/api/now").then((res) => {
+    axios.get("http://localhost:5001/api/now").then((res) => {
       var data = res.data;
       document.getElementById("timeZone").innerHTML =
         "<h1>현재시간: " + data.now + "<h1>";

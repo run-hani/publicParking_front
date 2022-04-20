@@ -1,45 +1,42 @@
-import tableStyles from "../common/styles/table.module.css";
+import formStyles from "@/pages/common/styles/Form.module.css";
+
 export default function Login() {
   const handleChange = () => {};
   return (
     <form
+      className={formStyles.wrapForms}
       onSubmit={(e) => {
         e.preventDefault();
       }}
     >
-      <table className={tableStyles.table}>
-        <thead>
-          <tr>
-            <th colSpan={2}>
-              <h1>로그인</h1>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <b>사용자ID</b>
-            </td>
-            <td>
-              <input type="text" name="userid" onChange={handleChange} />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <b>비밀번호</b>
-            </td>
-            <td>
-              <input type="text" name="password" onChange={handleChange} />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={2}>
-              <button type="submit">로그인</button>
-              <br />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className={formStyles.innerForms}>
+        <h2 className={formStyles.titForms}>로그인</h2>
+        <div className={formStyles.boxForms}>
+          <div className={formStyles.itemInp}>
+            <input
+              type="text"
+              name="userid"
+              className={formStyles.inpComm}
+              placeholder={'ID 입력'}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={formStyles.itemInp}>
+            <input
+              type="password"
+              name="password"
+              className={formStyles.inpComm}
+              placeholder={'비밀번호 입력'}
+              onChange={handleChange}
+            />
+          </div>
+          <button
+            type="submit"
+            className={formStyles.btnSubmit}>
+            로그인
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

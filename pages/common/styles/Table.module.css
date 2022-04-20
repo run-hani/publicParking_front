@@ -1,0 +1,7 @@
+.boxTbl{border-top:1px solid #E5E5E5}
+.tblComm{width:100%;border:0;border-spacing:0;border-collapse:collapse;table-layout:fixed;margin:0}
+.tblComm th, .tblComm td{padding:9px 8px 8px;border-left:1px solid #F0F0F0;font-size:13px;line-height:20px;word-break:break-all;text-align:center}
+.tblComm th{padding:7px 6px;border-bottom:1px solid #E5E5E5;font-weight:normal;color:#666;background-color:#FAFAFA;text-align:center}
+.tblComm th:first-child, .tblComm td:first-child{border-left:0}
+.tblComm td{height:34px;border-bottom:1px solid #E5E5E5;color:#1A1A1A;word-break:break-word}
+.tblComm .tdNodata{height:160px}

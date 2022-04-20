@@ -1,10 +1,10 @@
-.nav {
-  margin: 0 auto;
-  font-size: 15px;
-  width: 900px;
-  border: 1px solid black;
-  }
-.li {
-  display: inline;
-  margin-left: 40px;
-}
+.docHeader{display:flex;position:fixed;top:0;left:0;right:0;z-index:1000;min-width:960px;height:72px;padding:0 32px;background-color:#1A1A1A}
+.innerHeader{overflow:hidden;width:1100px;margin:0 auto;padding:0 30px}
+.titHeader{float:left;padding-top:23px}
+.titHeader .linkTit{font-weight:500;font-size:20px;line-height:26px;color:#fff}
+.titHeader .linkTit:hover{text-decoration:none}
+
+.listUtil{float:right;padding-top:24px;}
+.listUtil li{display:inline-block;vertical-align:top}
+.listUtil li + li{margin-left:20px}
+.listUtil .linkUtil{font-weight:500;font-size:14px;line-height:21px;color:#fff}
