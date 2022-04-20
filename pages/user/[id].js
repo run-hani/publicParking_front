@@ -13,7 +13,7 @@ export default function Profile({ id }) {
   useEffect(() => {
     alert(">>" + id);
     axios
-      .get(`http://localhost:5000/api/user/profile/${id}`)
+      .get(`http://localhost:5001/api/user/profile/${id}`)
       .then((res) => {
         setUser(res.data.user);
       })

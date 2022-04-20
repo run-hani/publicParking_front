@@ -1,0 +1,15 @@
+.wrapForms{height:100%;margin:0 auto;table-layout:fixed;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen","Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif}
+.wrapForms.typeLogin{padding-top:100px;}
+.wrapForms .innerForms{width:360px;vertical-align:middle;text-align:center}
+.wrapForms .titForms{display:block;margin-top:2px;font-size:22px;line-height:27px;color:#555;font-weight:normal;text-align:center}
+
+.boxForms{margin-top:32px;padding-top:0}
+.boxForms .itemInp{display:block;padding:6px 0;border:0 none;border-radius:4px;background-color:#fff;box-sizing:border-box}
+.boxForms .itemInp .itemInp{margin-top:8px}
+.boxForms .itemInp .inpComm{font-size:15px;line-height:19px;color:#777;width:100%;border:0;letter-spacing:-.5px;background:0 none}
+.boxForms .itemInp .inpComm{width:100%;height:100%;padding:11px 15px 10px;border:1px solid #e5e5e5;border-radius:4px;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen","Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;font-size:14px;line-height:21px;letter-spacing:-0.5px;background:0 none;color:#1a1a1a;box-sizing:border-box;opacity:1;appearance:auto}
+.boxForms .itemInp .inpComm:active,.wrapForms .boxForms .itemInp .inpComm:focus{border-color:#1a1a1a;outline:0 none}
+.boxForms .itemInp.error_inp .inpComm:active,.wrapForms .boxForms .itemInp.error_inp .inpComm:focus{border-color:#ff8080}
+.boxForms .itemInp .inpComm::placeholder{color:#999}
+.boxForms .txtError{margin:8px 0 16px;font-size:14px;line-height:21px;text-align:left;color:#ff8080}
+.wrapForms .btnSubmit{display:unset;width:100%;height:44px;margin-top:32px;padding-top:0;font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen","Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",sans-serif;font-weight:bold;font-size:16px;line-height:44px;color:#fff;letter-spacing:-0.5px;border-radius:4px;background-color:#3377FF}

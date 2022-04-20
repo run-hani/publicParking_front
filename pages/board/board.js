@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import tableStyles from "../common/styles/table.module.css";
 import { useDispatch } from "react-redux";
-import { addBoard } from "../../redux/reducers/boardReducer.ts";
+import tableStyles from "@/pages/common/styles/Table.module.css";
+import { addBoard } from "@/redux/reducers/boardReducer.ts";
+
 export default function Board() {
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({});

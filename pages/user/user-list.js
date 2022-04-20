@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import tableStyles from '../common/styles/table.module.css'
+import tableStyles from '../common/styles/Table.module.css'
 import Link from 'next/link'
 
 export default function UserList(){
@@ -8,7 +8,7 @@ export default function UserList(){
     const columns = ["사용자ID", "이름", "이메일", "전화번호", "생년월일", "주소"];
     const [data, setData] = useState([])
     useEffect(()=>{
-      axios.get('http://localhost:5000/api/user/list').then(res=>{
+      axios.get('http://localhost:5001/api/user/list').then(res=>{
         setData(res.data.users)
       }).catch(err=>{})
     },[])
@@ -18,7 +18,7 @@ export default function UserList(){
             <tr>
                 <th colSpan={6}><h1>회원목록</h1></th>
             </tr>
-            
+
         </thead>
         <tbody>
               <tr>
@@ -44,7 +44,7 @@ export default function UserList(){
                   <td >{user.address}</td>
                 </tr>
             ))}
-            
+
         </tbody>
       </table>
     );
