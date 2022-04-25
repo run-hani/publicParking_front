@@ -1,7 +1,40 @@
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../redux/reducers/userReducer.ts";
 import Link from "next/link";
 import styles from "./styles/Nav.module.css";
 
 export default function Nav() {
+  const [userUrls, setUserUrls] = useState([]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const loginUser = localStorage.getItem("loginUser");
+    if (loginUser === null) {
+      setUserUrls([
+        {
+          name: "회원가입",
+          url: "/user/join",
+        },
+        {
+          name: "로그인",
+          url: "/user/login",
+        },
+      ]);
+    } else {
+      setUserUrls([
+        {
+          name: "로그아웃",
+          url: "",
+          onClick(e) {
+            e.preventDefault();
+            dispatch(userActions.logoutRequest());
+          },
+        },
+      ]);
+    }
+  }, []);
+
   return (
     <header className={styles.docHeader}>
       <nav className={styles.innerHeader}>
@@ -11,16 +44,25 @@ export default function Nav() {
           </Link>
         </h1>
         <ul className={styles.listUtil}>
-          <li>
-            <Link href="/user/login">
-              <a className={styles.linkUtil}>로그인</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/user/join">
-              <a className={styles.linkUtil}>회원가입</a>
-            </Link>
-          </li>
+          {userUrls.map(function (item, idx) {
+            return (
+              <li>
+                {item.url ? (
+                  <Link href={item.url}>
+                    <a className={styles.linkUtil}>{item.name}</a>
+                  </Link>
+                ) : (
+                  <a
+                    href="#none"
+                    className={styles.linkUtil}
+                    onClick={item.onClick}
+                  >
+                    {item.name}
+                  </a>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>

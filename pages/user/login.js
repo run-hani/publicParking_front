@@ -1,12 +1,32 @@
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../redux/reducers/userReducer.ts";
 import formStyles from "@/pages/common/styles/Form.module.css";
 
 export default function Login() {
-  const handleChange = () => {};
+  const [login, setLogin] = useState({
+    userid: "",
+    password: "",
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setLogin({ ...login, [name]: value });
+  };
+
   return (
     <form
       className={formStyles.wrapForms}
       onSubmit={(e) => {
         e.preventDefault();
+        dispatch(userActions.loginRequest(login));
+        setLogin({
+          userid: "",
+          password: "",
+        });
       }}
     >
       <div className={formStyles.innerForms}>
@@ -17,7 +37,7 @@ export default function Login() {
               type="text"
               name="userid"
               className={formStyles.inpComm}
-              placeholder={'ID 입력'}
+              placeholder={"ID 입력"}
               onChange={handleChange}
             />
           </div>
@@ -26,13 +46,11 @@ export default function Login() {
               type="password"
               name="password"
               className={formStyles.inpComm}
-              placeholder={'비밀번호 입력'}
+              placeholder={"비밀번호 입력"}
               onChange={handleChange}
             />
           </div>
-          <button
-            type="submit"
-            className={formStyles.btnSubmit}>
+          <button type="submit" className={formStyles.btnSubmit}>
             로그인
           </button>
         </div>
