@@ -64,7 +64,7 @@ export const postEditApi = async (payload : {
 export const postDelApi = async () => {
   try {
     const response: AxiosResponse<unknown, PostType[]> =
-      await axios.delete(`${SERVER}/post/del`, {headers})
+      await axios.delete(`${SERVER}/post/:id`, {headers})
 
   } catch (err) {
     return err;

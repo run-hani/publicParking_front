@@ -6,6 +6,7 @@ import tableStyles from "@/pages/common/styles/Table.module.css";
 import formStyles from "@/pages/common/styles/Form.module.css";
 
 export default function BoardList() {
+  const proxy = 'http://localhost:5000'
   const columns = [
     "번호",
     "지역",
@@ -28,7 +29,7 @@ export default function BoardList() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5001/api/board/list")
+      .get(`${proxy}/posts`)
       .then((res) => {
         setData(res.data.boards);
       })
