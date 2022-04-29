@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import Link from 'next/link';
 import tableStyles from "@/pages/common/styles/Table.module.css";
 import commStyles from '@/pages/common/styles/Common.module.css';
-import Link from 'next/link';
 import formStyles from '@/pages/common/styles/Form.module.css';
 import { boardActions } from "@/redux/reducers/boardReducer.ts";
 

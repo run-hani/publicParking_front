@@ -29,7 +29,6 @@ const userSlice = createSlice({
     // joinRequest 이거 키값임 이게 액션이됨
     // 이렇게 하면 자동으로 reducer 생성됨
     joinRequest(state: UserState, payload) {
-      // alert('진행 2: 리듀서 내부 ')
       state.loading = true;
     },
     joinSuccess(state: UserState, { payload }) {
@@ -42,7 +41,6 @@ const userSlice = createSlice({
       state.loading = false;
     },
     loginRequest(state: UserState, payload) {
-      // alert('진행 2: 리듀서 내부 ')
       state.loading = true;
     },
     loginSuccess(state: UserState, { payload }) {
@@ -54,7 +52,6 @@ const userSlice = createSlice({
       state.loading = false;
     },
     logoutRequest(state: UserState, payload) {
-      // alert('진행 2: 로그아웃 리듀서 내부 ')
       state.loading = true;
     },
     logoutSuccess(state: UserState, { payload }) {
@@ -67,7 +64,6 @@ const userSlice = createSlice({
       state.loading = false;
     },
     delUserRequest(state: UserState, payload) {
-      // alert('진행 2: 회원탈퇴 리듀서 내부 ')
       state.loading = true;
     },
     delUserSuccess(state: UserState, { payload }) {

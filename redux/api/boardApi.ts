@@ -27,20 +27,18 @@ export const postAddApi = async (payload : {
   operDay: string;
 }) => {
   try {
-    alert('진행 4 : API 진입 ## (5번은 server에 있음)')
     const response: AxiosResponse<unknown, PostType[]> = await axios.post(
-      `${SERVER}/post/add`,
+      `${SERVER}/board/post/add`,
       payload,
       {headers}
     )
-    alert('진행 6 : 응답성공 ' + JSON.stringify(response.data))
     return response.data
   } catch (err) {
     return err;
   }
 }
 
-export const postEditApi = async (payload : {
+export const postUpdateApi = async (payload : {
   _id: string;
   areaName: string;
   parkingName: string;
@@ -51,10 +49,8 @@ export const postEditApi = async (payload : {
   operDay: string;
 }) => {
   try {
-    alert('진행 4 : API 진입 ## (5번은 server에 있음)')
     const response: AxiosResponse<unknown, PostType[]> =
-      await axios.post(`${SERVER}/post/update`, payload, {headers});
-    alert('진행 6 : 응답성공 ' + JSON.stringify(response.data))
+      await axios.post(`${SERVER}/board/post/update`, payload, {headers});
     return response.data
   } catch (err) {
     return err;
@@ -64,7 +60,7 @@ export const postEditApi = async (payload : {
 export const postDelApi = async () => {
   try {
     const response: AxiosResponse<unknown, PostType[]> =
-      await axios.delete(`${SERVER}/post/:id`, {headers})
+      await axios.delete(`${SERVER}/board/post/:id`, {headers})
 
   } catch (err) {
     return err;

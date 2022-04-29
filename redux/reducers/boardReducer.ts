@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { useRouter } from "next/router";
 
 export interface PostType {
   areaName: string;
@@ -32,6 +33,8 @@ const boardSlice = createSlice({
     postAddSuccess(state: PostState, { payload }) {
       state.data = [...state.data, payload];
       state.loading = false;
+      const router = useRouter();
+      router.push("/board/list");
     },
     postAddFailure(state: PostState, { payload }) {
       state.data = payload;
@@ -59,7 +62,7 @@ const boardSlice = createSlice({
     postDelFailure(state: PostState, { payload }) {
       state.data = payload;
       state.loading = false;
-    }
+    },
   },
 });
 

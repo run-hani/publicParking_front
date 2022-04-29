@@ -39,7 +39,7 @@ export default function Nav() {
     <header className={styles.docHeader}>
       <nav className={styles.innerHeader}>
         <h1 className={styles.titHeader}>
-          <Link href="/board/board-list">
+          <Link href="/board/list">
             <a className={styles.linkTit}>서울 공영주차장 정보</a>
           </Link>
         </h1>

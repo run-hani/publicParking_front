@@ -25,13 +25,11 @@ export const joinApi = async (payload : {
     address: string
 }) => {
     try {
-        alert('진행 4 : API 진입 ## (5번은 server에 있음)')
         const response: AxiosResponse<unknown, UserType[]> = await axios.post(
             `${SERVER}/user/join`,
             payload,
             {headers}
         )
-        alert('진행 6 : 응답성공 ' + JSON.stringify(response.data))
         return response.data
     } catch (err) {
         return err;
@@ -43,14 +41,12 @@ export const loginApi = async (payload : {
     password: string
 }) => {
     try {
-        alert('진행 4 : 로그인 API 진입 ## (5번은 server에 있음)')
         const response: AxiosResponse<unknown, UserType[]> = await axios.post(
             `${SERVER}/user/login`,
             payload,
             {headers}
         )
         const loginUser = JSON.stringify(response.data)
-        alert('진행 6 : 로그인 응답성공 ' + JSON.stringify(loginUser))
         localStorage.setItem("loginUser", loginUser)
         return response.data
     } catch (err) {

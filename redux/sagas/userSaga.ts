@@ -30,20 +30,17 @@ interface UserLoginSuccessType{
     }
 }
 
-function* join(user: UserJoinType){
-    try{
-        alert(' 진행 3: saga내부 join 성공  '+ JSON.stringify(user))
-        const response : UserJoinSuccessType = yield joinApi(user.payload)
-        yield put(userActions.joinSuccess(response))
-    }catch(error){
-         alert('진행 3: saga내부 join 실패  ') 
-         yield put(userActions.joinFailure(error))
-    }
+function* join(user: UserJoinType) {
+  try {
+    const response: UserJoinSuccessType = yield joinApi(user.payload);
+    yield put(userActions.joinSuccess(response));
+  } catch (error) {
+    yield put(userActions.joinFailure(error));
+  }
 }
 // joinApi.joinRequest가 꽃히면 join을 만듬
-export function* watchJoin(){
-    // alert('진행 2.5')
-    yield takeLatest(userActions.joinRequest, join)
+export function* watchJoin() {
+  yield takeLatest(userActions.joinRequest, join);
 }
 
 function* login(login: UserLoginType){
