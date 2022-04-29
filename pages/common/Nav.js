@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../redux/reducers/userReducer.ts";
-import Link from "next/link";
 import styles from "./styles/Nav.module.css";
 
 export default function Nav() {

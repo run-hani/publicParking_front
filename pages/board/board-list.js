@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import axios from "axios";
 import commStyles from "@/pages/common/styles/Common.module.css";
 import tableStyles from "@/pages/common/styles/Table.module.css";
+import formStyles from "@/pages/common/styles/Form.module.css";
 
 export default function BoardList() {
   const columns = [
@@ -37,6 +39,9 @@ export default function BoardList() {
     <div>
       <div className={commStyles.titleArea}>
         <h2 className={commStyles.titText}>주차장 정보</h2>
+        <Link href={"/board/board-write"}>
+        <button className={formStyles.linkApply}>게시글 등록</button>
+        </Link>
       </div>
       <div className={tableStyles.boxTbl}>
         <table className={tableStyles.tblComm}>
@@ -65,11 +70,14 @@ export default function BoardList() {
               <tr key={board.parkingId}>
                 <td>{board.parkingId}</td>
                 <td>{board.areaName}</td>
-                <td>{board.name}</td>
+                <td>{board.parkingName}</td>
                 <td>{board.divisionCount}</td>
                 <td>{board.charge}</td>
-                <td className={commStyles.alignLeft}>{board.adress}</td>
-                <td>{board.operTime}</td>
+                <td className={commStyles.alignLeft}>
+                  {board.adressLotNumber}<br/>
+                  {board.adressRoadName}
+                </td>
+                <td>{board.operDay}</td>
               </tr>
             ))
           )}
