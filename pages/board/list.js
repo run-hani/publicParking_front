@@ -7,23 +7,54 @@ import formStyles from "@/pages/common/styles/Form.module.css";
 
 export default function BoardList() {
   const proxy = "http://localhost:5000";
-  const columns = [
-    "번호",
-    "지역",
-    "주차장명",
-    "구획수",
-    "요금",
-    "주소",
-    "운영시간",
-  ];
-  const cols = ["70px", "120px", "160px", "80px", "120px", "", "200px"];
+  const columns = ["지역", "주차장명", "구획수", "요금", "주소", "운영시간"];
+  const cols = ["120px", "160px", "80px", "120px", "", "200px"];
+  const areaName = {
+    GN: "강남구",
+    GD: "강동구",
+    GB: "강북구",
+    GS: "강서구",
+    GA: "관악구",
+    GG: "광진구",
+    GR: "구로구",
+    GC: "금천구",
+    NW: "노원구",
+    DB: "도봉구",
+    DDM: "동대문구",
+    DJ: "동작구",
+    MP: "마포구",
+    SDM: "서대문구",
+    SC: "서초구",
+    SD: "성동구",
+    SB: "성북구",
+    SP: "송파구",
+    YC: "양천구",
+    YDP: "영등포구",
+    YS: "용산구",
+    EP: "은평구",
+    JN: "종로구",
+    J: "중구",
+    JR: "중랑구",
+  };
+  const charge = {
+    FREE: "무료",
+    PAY: "유료",
+    MULTI: "혼합",
+  };
+  const operDay = {
+    WEEK: "평일",
+    WEEK_SAT: "평일+토요일",
+    WEEK_SAT_HOLI: "평일+토요일+공휴일",
+    ALL: "연중무휴",
+  };
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`${proxy}/posts`)
+      .get(`${proxy}/board/posts`)
       .then((res) => {
-        setData(res.data.boards);
+        setData(res.data.posts);
       })
       .catch((err) => {});
   }, []);
@@ -64,18 +95,17 @@ export default function BoardList() {
               </tr>
             ) : (
               data.map((board) => (
-                <tr key={board.parkingId}>
-                  <td>{board.parkingId}</td>
-                  <td>{board.areaName}</td>
+                <tr key={board._id}>
+                  <td>{areaName[board.areaName]}</td>
                   <td>{board.parkingName}</td>
                   <td>{board.divisionCount}</td>
-                  <td>{board.charge}</td>
+                  <td>{charge[board.charge]}</td>
                   <td className={commStyles.alignLeft}>
                     {board.adressLotNumber}
                     <br />
                     {board.adressRoadName}
                   </td>
-                  <td>{board.operDay}</td>
+                  <td>{operDay[board.operDay]}</td>
                 </tr>
               ))
             )}

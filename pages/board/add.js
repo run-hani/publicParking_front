@@ -36,12 +36,13 @@ export default function Board() {
         </div>
         <div className={tableStyles.boxTbl}>
           <table className={tableStyles.tblComm}>
-            <caption className={commStyles.irCaption}>테이블: 서울 공영주차장 게시글 작성</caption>
+            <caption className={commStyles.irCaption}>
+              테이블: 서울 공영주차장 게시글 작성
+            </caption>
             <colgroup>
-                <col style={{width: '130px'}} />
+              <col style={{ width: "130px" }} />
             </colgroup>
-            <thead>
-            </thead>
+            <thead></thead>
             <tbody>
               <tr>
                 <th>지역</th>
@@ -50,7 +51,8 @@ export default function Board() {
                     id="areaName"
                     name="areaName"
                     className={formStyles.optComm}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                  >
                     <option value="">지역 선택</option>
                     <option value="GN">강남구</option>
                     <option value="GD">강동구</option>
@@ -109,14 +111,17 @@ export default function Board() {
               <tr>
                 <th>요금</th>
                 <td>
-                  <input
-                    type="text"
-                    onChange={handleChange}
-                    className={formStyles.inpComm}
+                  <select
                     id="charge"
                     name="charge"
-                    placeholder="요금 입력"
-                  />
+                    className={formStyles.optComm}
+                    onChange={handleChange}
+                  >
+                    <option value="">요금 선택</option>
+                    <option value="FREE">무료</option>
+                    <option value="PAY">유료</option>
+                    <option value="MULTI">혼합</option>
+                  </select>
                 </td>
               </tr>
               <tr>
@@ -152,7 +157,8 @@ export default function Board() {
                     id="operDay"
                     name="operDay"
                     className={formStyles.optComm}
-                    onChange={handleChange}>
+                    onChange={handleChange}
+                  >
                     <option value="">운영요일 선택</option>
                     <option value="WEEK">평일</option>
                     <option value="WEEK_SAT">평일+토요일</option>
@@ -164,7 +170,9 @@ export default function Board() {
             </tbody>
           </table>
         </div>
-        <button type='submit' className={formStyles.linkApply}>등록</button>
+        <button type="submit" className={formStyles.linkApply}>
+          등록
+        </button>
       </div>
     </form>
   );
