@@ -46,7 +46,7 @@ export default function Nav() {
         <ul className={styles.listUtil}>
           {userUrls.map(function (item, idx) {
             return (
-              <li>
+              <li key={idx}>
                 {item.url ? (
                   <Link href={item.url}>
                     <a className={styles.linkUtil}>{item.name}</a>
