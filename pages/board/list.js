@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { boardActions } from "@/redux/reducers/boardReducer.ts";
 import commStyles from "@/pages/common/styles/Common.module.css";
 import tableStyles from "@/pages/common/styles/Table.module.css";
 import formStyles from "@/pages/common/styles/Form.module.css";
 
 export default function BoardList() {
   const proxy = "http://localhost:5000";
-  const columns = ["지역", "주차장명", "구획수", "요금", "주소", "운영시간"];
-  const cols = ["120px", "160px", "80px", "120px", "", "200px"];
+
+  const columns = [
+    "지역",
+    "주차장명",
+    "구획수",
+    "요금",
+    "주소",
+    "운영시간",
+    "설정",
+  ];
+  const cols = ["120px", "160px", "80px", "120px", "", "200px", "140px"];
   const areaName = {
     GN: "강남구",
     GD: "강동구",
@@ -48,24 +59,40 @@ export default function BoardList() {
     ALL: "연중무휴",
   };
 
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  const [data, setData] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
+
+  const getListData = () => {
     axios
       .get(`${proxy}/board/posts`)
       .then((res) => {
         setData(res.data.posts);
       })
       .catch((err) => {});
+  };
+
+  useEffect(() => {
+    const loginUser = localStorage.getItem("loginUser");
+    setIsLogin(!!loginUser);
+    getListData();
   }, []);
+
+  const onClickDelete = async (e, post) => {
+    e.preventDefault();
+    dispatch(boardActions.postDelRequest(post));
+  };
 
   return (
     <div>
       <div className={commStyles.titleArea}>
         <h2 className={commStyles.titText}>주차장 정보</h2>
-        <Link href={"/board/add"}>
-          <button className={formStyles.linkApply}>게시글 등록</button>
-        </Link>
+        {isLogin && (
+          <Link href={"/board/add"}>
+            <button className={formStyles.linkApply}>게시글 등록</button>
+          </Link>
+        )}
       </div>
       <div className={tableStyles.boxTbl}>
         <table className={tableStyles.tblComm}>
@@ -106,6 +133,32 @@ export default function BoardList() {
                     {board.adressRoadName}
                   </td>
                   <td>{operDay[board.operDay]}</td>
+                  <td>
+                    {isLogin ? (
+                      <>
+                        <Link
+                          href={{
+                            pathname: `/board/[id]`,
+                          }}
+                          as={`/board/${board._id}`}
+                        >
+                          <button className={formStyles.linkSetting}>
+                            수정
+                          </button>
+                        </Link>
+                        <button
+                          className={formStyles.linkSetting}
+                          onClick={(e) => {
+                            onClickDelete(e, board);
+                          }}
+                        >
+                          삭제
+                        </button>
+                      </>
+                    ) : (
+                      <>-</>
+                    )}
+                  </td>
                 </tr>
               ))
             )}

@@ -57,13 +57,14 @@ export const postUpdateApi = async (payload : {
   }
 }
 
-export const postDelApi = async () => {
+export const postDelApi = async (id: String) => {
   try {
-    const response: AxiosResponse<unknown, PostType[]> =
-      await axios.delete(`${SERVER}/board/post/:id`, {headers})
-
+    const response: AxiosResponse<unknown, PostType[]> = await axios.delete(
+      `${SERVER}/board/post/${id}`,
+      { headers }
+    );
   } catch (err) {
     return err;
   }
-}
+};
 

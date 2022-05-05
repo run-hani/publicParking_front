@@ -45,7 +45,7 @@ export default function Login() {
             <input
               type="password"
               name="password"
-              호
+              className={formStyles.inpComm}
               placeholder={"비밀번호 입력"}
               onChange={handleChange}
             />

@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Link from 'next/link';
+import Link from "next/link";
+import axios from "axios";
 import tableStyles from "@/pages/common/styles/Table.module.css";
-import commStyles from '@/pages/common/styles/Common.module.css';
-import formStyles from '@/pages/common/styles/Form.module.css';
+import commStyles from "@/pages/common/styles/Common.module.css";
+import formStyles from "@/pages/common/styles/Form.module.css";
 import { boardActions } from "@/redux/reducers/boardReducer.ts";
 import { useRouter } from "next/router";
+
+export async function getServerSideProps(context) {
+  return {
+    props: {},
+  };
+}
 
 export default function Board() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { id } = router.query;
 
+  const [isLoaded, setIsLoaded] = useState(false);
   const [post, setPost] = useState({
+    _id: id,
     areaName: "",
     parkingName: "",
     divisionCount: "",
@@ -20,6 +30,23 @@ export default function Board() {
     adressRoadName: "",
     operDay: "",
   });
+
+  const getData = () => {
+    axios
+      .get(`http://localhost:5000/board/post/${id}`)
+      .then((res) => {
+        setPost({
+          ...post,
+          ...res.data.post,
+        });
+        setIsLoaded(true);
+      })
+      .catch((err) => {});
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +62,7 @@ export default function Board() {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (post) dispatch(boardActions.postAddRequest(post));
+        if (post) dispatch(boardActions.postEditRequest(post));
         router.push("/board/list");
       }}
     >
@@ -61,6 +88,7 @@ export default function Board() {
                     name="areaName"
                     className={formStyles.optComm}
                     onChange={handleChange}
+                    value={post.areaName}
                   >
                     <option value="">지역 선택</option>
                     <option value="GN">강남구</option>
@@ -101,6 +129,7 @@ export default function Board() {
                     id="parkingName"
                     name="parkingName"
                     placeholder="주차장명 입력"
+                    value={post.parkingName}
                   />
                 </td>
               </tr>
@@ -114,6 +143,7 @@ export default function Board() {
                     id="divisionCount"
                     name="divisionCount"
                     placeholder="구획수 입력"
+                    value={post.divisionCount}
                   />
                 </td>
               </tr>
@@ -125,6 +155,7 @@ export default function Board() {
                     name="charge"
                     className={formStyles.optComm}
                     onChange={handleChange}
+                    value={post.charge}
                   >
                     <option value="">요금 선택</option>
                     <option value="FREE">무료</option>
@@ -143,6 +174,7 @@ export default function Board() {
                     id="adressLotNumber"
                     name="adressLotNumber"
                     placeholder="주소 (지번) 입력"
+                    value={post.adressLotNumber}
                   />
                 </td>
               </tr>
@@ -156,6 +188,7 @@ export default function Board() {
                     id="adressRoadName"
                     name="adressRoadName"
                     placeholder="주소 (도로명) 입력"
+                    value={post.adressRoadName}
                   />
                 </td>
               </tr>
@@ -167,6 +200,7 @@ export default function Board() {
                     name="operDay"
                     className={formStyles.optComm}
                     onChange={handleChange}
+                    value={post.operDay}
                   >
                     <option value="">운영요일 선택</option>
                     <option value="WEEK">평일</option>
@@ -184,7 +218,7 @@ export default function Board() {
             취소
           </button>
           <button type="submit" className={formStyles.linkSubmit}>
-            등록
+            수정
           </button>
         </div>
       </div>

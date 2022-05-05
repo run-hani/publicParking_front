@@ -49,12 +49,12 @@ export function* watchPostEdit(){
   yield takeLatest(boardActions.postEditRequest, postEdit)
 }
 
-function* postDel(){
-  try{
-    const response : PostSuccessType = yield postDelApi()
-    yield put(boardActions.delUserSuccess(response))
-  }catch(error){
-    console.log(error)
+function* postDel(post: PostType) {
+  try {
+    const response: PostSuccessType = yield postDelApi(post.payload._id);
+    yield put(boardActions.postDelSuccess(response));
+  } catch (error) {
+    console.log(error);
   }
 }
 export function* watchPostDel(){
